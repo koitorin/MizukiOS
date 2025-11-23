@@ -1,8 +1,34 @@
 modules:
+  - type: script
+    snippets:
+    - "sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo" # disables negativo17
+    
   - type: dnf
     repos:
       cleanup: true
       nonfree: rpmfusion
+      copr:
+        - atim/starship
     install:
       packages:
         - discord
+        - fish
+        - starship
+
+modules:
+  - type: script
+    snippets:
+    - "sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/negativo17-fedora-multimedia.repo" # enables negativo17 again
+
+  - type: dnf # adds niri packages
+    repos:
+      cleanup: true
+      copr: 
+        - yalter/niri-git
+        - avengemedia/dms
+    install:
+    packages:
+      - repo: copr:copr.fedorainfracloud.org:yalter:niri-git
+        packages:
+         - niri
+      - dms
