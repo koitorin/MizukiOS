@@ -1,0 +1,5 @@
+type: dnf
+repos:
+  nonfree: rpmfusion
+  packages:
+    - discord
