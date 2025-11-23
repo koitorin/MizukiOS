@@ -3,6 +3,6 @@ modules:
     repos:
       cleanup: true
       nonfree: rpmfusion
-      install:
-        packages:
-          - discord
+    install:
+      packages:
+        - discord
