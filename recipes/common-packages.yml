@@ -9,11 +9,11 @@ modules:
       nonfree: rpmfusion
       copr:
         - atim/starship
-      install:
-        packages:
-          - discord
-          - fish
-          - starship
+    install:
+      packages:
+        - discord
+        - fish
+        - starship
 
   - type: script
     snippets:
