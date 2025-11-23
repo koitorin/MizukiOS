@@ -1,7 +1,7 @@
 modules:
   - type: script
     snippets:
-    - "sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/negativo17-fedora-multimedia.repo" # disables negativo17
+    - "dnf5 config-manager setopt rpmfusion-nonfree.enabled=1" # enables rpmfusion back
     
   - type: dnf
     repos:
@@ -14,10 +14,6 @@ modules:
         - discord
         - fish
         - starship
-
-  - type: script
-    snippets:
-    - "sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/negativo17-fedora-multimedia.repo" # enables negativo17 again
 
   - type: dnf # adds niri packages
     repos:
