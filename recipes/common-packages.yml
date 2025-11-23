@@ -1,5 +1,6 @@
-type: dnf
-repos:
-  nonfree: rpmfusion
-  packages:
-    - discord
+modules:
+  - type: dnf
+    repos:
+    nonfree: rpmfusion
+    packages:
+      - discord
