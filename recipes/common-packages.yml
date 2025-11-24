@@ -11,7 +11,7 @@ modules:
         - atim/starship
     install:
       packages:
-        - discord
+        #- discord
         - fish
         - starship
 
