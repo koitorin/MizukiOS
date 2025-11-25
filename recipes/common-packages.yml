@@ -21,7 +21,7 @@ modules:
       #install-weak-deps: false
       copr: 
         - yalter/niri-git
-        - avengemedia/dms
+        - avengemedia/dms-git
         - avengemedia/danklinux
     install:
       packages:
