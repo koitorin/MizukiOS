@@ -1,17 +1,11 @@
 modules:
-  - type: script
-    snippets:
-    - "dnf5 config-manager setopt rpmfusion-nonfree.enabled=1" # enables rpmfusion back
-    
   - type: dnf
     repos:
       cleanup: true
-      nonfree: rpmfusion
       copr:
         - atim/starship
     install:
       packages:
-        #- discord
         - fish
         - starship
 
@@ -33,4 +27,17 @@ modules:
         - dms-greeter
         - dgop
         - quickshell-git
+        - wl-clipboard
         - xwayland-satellite
+
+  - type: dnf # adds qt6 things
+    repos:
+      cleanup: true
+      install-weak-deps: true
+    install:
+      packages:
+        - kf6-kirigami
+        - qt6ct
+        - polkit-kde
+        - plasma-breeze
+        - kf6-qqc2-desktop-style
