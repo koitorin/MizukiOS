@@ -12,7 +12,7 @@ modules:
   - type: dnf # adds niri packages
     repos:
       cleanup: true
-      copr: 
+      copr:
         - yalter/niri-git
         - avengemedia/dms-git
         - avengemedia/danklinux
@@ -41,3 +41,10 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
+
+  - type: systemd
+    user:
+        enabled:
+            - dms.service
+            - cliphist.service
+            - xwayland-satellite.service
