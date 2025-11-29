@@ -9,7 +9,7 @@ modules:
         - fish
         - starship
 
-  - type: dnf # adds niri packages
+  - type: dnf
     repos:
       cleanup: true
       copr:
@@ -26,6 +26,11 @@ modules:
         - dms-cli
         - dms-greeter
         - dgop
+        - fcitx5-configtool
+        - fcitx5-mozc
+        - fcitx5-chinese-addons
+        - fcitx5-hangul
+        - kcm-fcitx5
         - quickshell-git
         - wl-clipboard
         - xwayland-satellite
@@ -41,6 +46,12 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
+
+  # copying system files over to the system
+  - type: files
+    files:
+      - source: system
+        destination: /
 
   - type: systemd
     user:
