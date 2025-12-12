@@ -58,4 +58,3 @@ modules:
         enabled:
             - dms.service
             - cliphist.service
-            - xwayland-satellite.service
