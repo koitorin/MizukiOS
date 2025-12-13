@@ -16,6 +16,7 @@ modules:
         - yalter/niri-git
         - avengemedia/dms-git
         - avengemedia/danklinux
+        - ulysg/xwayland-satellite
     #install-weak-deps: false
     install:
       packages:
