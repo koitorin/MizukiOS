@@ -22,6 +22,9 @@ modules:
         - repo: copr:copr.fedorainfracloud.org:yalter:niri-git
           packages:
            - niri
+        - repo: copr:copr.fedorainfracloud.org:ulysg:xwayland-satellite
+          packages:
+           - xwayland-satellite
         - dms
         - dms-cli
         - dms-greeter
@@ -33,7 +36,6 @@ modules:
         - kcm-fcitx5
         - quickshell-git
         - wl-clipboard
-        - xwayland-satellite
 
   - type: dnf # adds qt6 things
     repos:
