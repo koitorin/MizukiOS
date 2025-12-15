@@ -17,8 +17,8 @@ modules:
         - avengemedia/dms-git
         - avengemedia/danklinux
         - ulysg/xwayland-satellite
-    #install-weak-deps: false
     install:
+      install-weak-deps: false
       packages:
         - repo: copr:copr.fedorainfracloud.org:ulysg:xwayland-satellite
           packages:
@@ -35,6 +35,7 @@ modules:
         - fcitx5-chinese-addons
         - fcitx5-hangul
         - kcm-fcitx5
+        - nemo
         - quickshell-git
         - wl-clipboard
 
