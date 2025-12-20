@@ -1,6 +1,6 @@
 modules:
- - type: os-release
-   properties:
+  - type: os-release
+    properties:
     ID: mizukios
     ID_LIKE: fedora
     NAME: MizukiOS
