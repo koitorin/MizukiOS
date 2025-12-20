@@ -73,7 +73,7 @@ modules:
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
     all-users: true
-    file-conflict-policy: replace
+    file-conflict-policy: skip
 
   - type: systemd
     user:
