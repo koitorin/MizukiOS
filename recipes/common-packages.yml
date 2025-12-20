@@ -15,6 +15,7 @@ modules:
         - atim/starship
     install:
       packages:
+        - chezmoi
         - fish
         - hyfetch
         - starship
@@ -67,6 +68,11 @@ modules:
     files:
       - source: system
         destination: /
+
+  - type: chezmoi
+    repository: "https://github.com/koitorin/MizukiOS-Ribbons"
+    all-users: true
+    file-conflict-policy: replace
 
   - type: systemd
     user:
