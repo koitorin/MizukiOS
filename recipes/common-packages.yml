@@ -1,12 +1,12 @@
 modules:
   - type: os-release
     properties:
-    ID: mizukios
-    ID_LIKE: fedora
-    NAME: MizukiOS
-    PRETTY_NAME: MizukiOS
-    DEFAULT_HOSTNAME: mizukios
-    VERSION_CODENAME: Ribbon
+      ID: mizukios
+      ID_LIKE: fedora
+      NAME: MizukiOS
+      PRETTY_NAME: MizukiOS
+      DEFAULT_HOSTNAME: mizukios
+      VERSION_CODENAME: Ribbon
 
   - type: dnf
     repos:
