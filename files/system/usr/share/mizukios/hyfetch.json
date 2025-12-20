@@ -8,7 +8,7 @@
         "mode": "horizontal"
     },
     "backend": "fastfetch",
-    "args": null,
+    "args": "--config /usr/share/mizukios/fastfetch.jsonc",
     "distro": null,
     "pride_month_disable": false,
     "custom_ascii_path": "/usr/share/mizukios/mizuki-ascii"
