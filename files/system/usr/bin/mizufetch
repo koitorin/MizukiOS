@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-hyfetch /usr/share/mizukios/hyfetch.json "${@}"
+hyfetch --config-file /usr/share/mizukios/hyfetch.json "${@}"
