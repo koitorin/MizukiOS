@@ -48,7 +48,6 @@ modules:
         - fcitx5-gtk
         - fcitx5-hangul
         - kcm-fcitx5
-        - nemo
         - quickshell-git
         - wl-clipboard
 
