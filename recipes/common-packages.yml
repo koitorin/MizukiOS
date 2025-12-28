@@ -61,6 +61,18 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
+        
+  - type: dnf #packages for japanese kanji rendering instead of chinese fallback
+    repos:
+      cleanup: true
+    install:
+      install-weak-deps: false
+      packages:
+        - langpacks-ja
+        - default-fonts-cjk-sans
+        - google-noto-sans-cjk-vf-fonts
+        - langpacks-core-ja
+        - langpacks-fonts-ja
 
   # copying system files over to the system
   - type: files
