@@ -234,7 +234,10 @@ modules:
         - jmtpfs
         - jetbrains-mono-fonts-all
         - kernel-modules-extra
-        - libcamera{,-{v4l2,gstreamer,tools}}
+        - libcamera
+        - libcamera-gstreamer
+        - libcamera-ipa
+        - libcamera-tools
         - libimobiledevice
         - libimobiledevice-utils
         - libratbag-ratbagd
