@@ -207,11 +207,15 @@ modules:
         - audispd-plugins
         - audit
         - brcmfmac-firmware
+        - brightnessctl
+        - cava
         - cifs-utils
         - cups
         - cups-pk-helper
+        - ddcutil
         - dymo-cups-drivers
         - firewalld
+        - fpaste
         - fprintd
         - fprintd-pam
         - flatpak
@@ -219,10 +223,15 @@ modules:
         - fuse
         - fuse-common
         - fwupd
-        - gnome-disk-utility
-        - gdm
         - git
+        - git-core
         - glibc-all-langpacks
+        - glycin-thumbnailer
+        - gnome-disk-utility
+        - gnome-keyring
+        - gnome-keyring-pam
+        - greetd
+        - greetd-selinux
         - gum
         - gvfs-archive
         - gvfs-mtp
@@ -251,6 +260,7 @@ modules:
         - man-pages
         - mobile-broadband-provider-info
         - mt7xxx-firmware
+        - nautilus
         - NetworkManager
         - NetworkManager-adsl
         - NetworkManager-bluetooth
@@ -265,14 +275,19 @@ modules:
         - NetworkManager-wifi
         - NetworkManager-wwan
         - nxpwireless-firmware
+        - openssh-askpass
         - open-vm-tools
         - open-vm-tools-desktop
         - openconnect
+        - orca
         - pam_yubico
+        - pipewire
         - pcsc-lite
+        - playerctl
         - plymouth
         - plymouth-system-theme
         - printer-driver-brlaser
+        - ptyxis
         - ptouch-driver
         - qemu-guest-agent
         - realtek-firmware
@@ -287,13 +302,20 @@ modules:
         - tiwilink-firmware
         - tuned
         - tuned-ppd
+        - udiskie
         - unzip
         - uupd
         - usb_modeswitch
         - uxplay
         - vpnc
+        - webp-pixbuf-loader
         - whois
         - wireguard-tools
+        - wireplumber
+        - wl-clipboard
+        - xdg-desktop-portal-gnome
+        - xdg-desktop-portal-gtk
+        - xdg-user-dirs
         - zram-generator-defaults
         - tailscale
         - dms # niri starts here
@@ -327,16 +349,35 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
-        
-  - type: dnf #packages for japanese kanji rendering instead of chinese fallback
+
+  - type: script # Codecs for video thumbnails on nautilus
+    snippets:
+      - "dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo"
+      - "dnf config-manager setopt fedora-multimedia.enabled=0"
+      - "dnf -y install --enablerepo=fedora-multimedia -x PackageKit* ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer"
+
+  - type: script # add_wants_niri
+    snippets:
+      - 'add_wants_niri() {
+    sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
+}'
+      - 'add_wants_niri udiskie.service'
+      - 'cat /usr/lib/systemd/user/niri.service'
+
+  - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
       cleanup: true
     install:
       install-weak-deps: false
       packages:
-        - langpacks-ja
+        - default-fonts-core-emoji
+        - default-fonts
         - default-fonts-cjk-sans
+        - google-noto-color-emoji-fonts
+        - google-noto-emoji-fonts
         - google-noto-sans-cjk-vf-fonts
+        - glibc-all-langpacks
+        - langpacks-ja
         - langpacks-core-ja
         - langpacks-fonts-ja
 
@@ -376,6 +417,8 @@ modules:
   # some finishing touches
   - type: script
     snippets:
+      - "sed --sandbox -i -e '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd"
+      - "rm -rf /usr/share/doc/just"
       - "sed -i 's|uupd|& --disable-module-distrobox|' /usr/lib/systemd/system/uupd.service"
       - "sed -i '/^REDHAT_BUGZILLA_PRODUCT=/d;/^REDHAT_BUGZILLA_PRODUCT_VERSION=/d;/^REDHAT_SUPPORT_PRODUCT=/d;/^REDHAT_SUPPORT_PRODUCT_VERSION=/d;/^SUPPORT_END=/d' /usr/lib/os-release"
       - "echo 'Hidden=true' >> /usr/share/applications/btop.desktop"
@@ -399,9 +442,12 @@ modules:
       enabled:
         - dms.service
         - cliphist.service
+        - gnome-keyring-daemon.service
+        - gnome-keyring-daemon.socket
+        - udiskie.service
+        - udiskie
     system:
       enabled:
-        - gdm.service
         - systemd-timesyncd.service
         - systemd-resolved.service
         - tailscaled.service
