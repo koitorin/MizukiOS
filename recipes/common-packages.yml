@@ -357,12 +357,8 @@ modules:
       - "dnf -y install --enablerepo=fedora-multimedia -x PackageKit* ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer"
 
   - type: script # add_wants_niri
-    snippets:
-      - 'add_wants_niri() {
-    sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
-}'
-      - 'add_wants_niri udiskie.service'
-      - 'cat /usr/lib/systemd/user/niri.service'
+    scripts:
+      - add_wants_niri.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
