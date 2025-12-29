@@ -4,6 +4,7 @@ modules:
       ID: mizukios
       ID_LIKE: fedora
       NAME: MizukiOS
+      VERSION: 43 (Ribbon)
       PRETTY_NAME: MizukiOS
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
@@ -151,7 +152,7 @@ modules:
   # swap kernel
   - type: script
     scripts:
-      - swap-kernel
+      - swap-kernel.sh
 
   # install brew, updates would be handled with uupd
   - type: copy
@@ -375,6 +376,7 @@ modules:
       - "curl --retry 3 -Lo /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
       - "chmod +x /usr/bin/winetricks"
       - "sed -i 's@/usr/bin/steam@/usr/bin/mizukios-steam@g' /usr/share/applications/steam.desktop"
+      - "fc-cache --force --really-force --system-only --verbose"
       - "rm -rf /usr/share/doc"
       - "rm -rf /usr/src"
       - "rpm --erase --nodeps kernel-cachyos || true"
