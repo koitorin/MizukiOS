@@ -232,6 +232,7 @@ modules:
         - hyperv-daemons
         - ibus
         - ifuse
+        - input-remapper
         - intel-audio-firmware
         - iwlegacy-firmware
         - iwlwifi-dvm-firmware
