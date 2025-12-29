@@ -53,9 +53,11 @@ modules:
     install:
       skip-unavailable: true
       packages:
+        - fdk-aac
         - intel-gmmlib
         - intel-mediasdk
         - intel-vpl-gpu-rt
+        - libfdk-aac
         - libheif
         - libva
         - libva-intel-media-driver
@@ -84,7 +86,6 @@ modules:
         - apr
         - apr-util
         - distrobox
-        - fdk-aac
         - ffmpeg
         - ffmpeg-libs
         - ffmpegthumbnailer
@@ -106,7 +107,6 @@ modules:
         - libcamera-ipa
         - libheif
         - libcamera-tools
-        - libfdk-aac
         - libimobiledevice-utils
         - libratbag-ratbagd
         - libva-utils
