@@ -349,6 +349,7 @@ modules:
   # give bazzite copr repos a priority, install gamescope and scb
   - type: script
     snippets:
+      - "dnf5 -y config-manager setopt '*terra*'.enabled=false"
       - "dnf5 -y copr enable bazzite-org/bazzite"
       - "dnf5 -y copr enable bazzite-org/bazzite-multilib"
       - "dnf5 -y config-manager setopt '*bazzite*'.priority=90"
