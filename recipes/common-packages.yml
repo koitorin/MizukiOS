@@ -135,7 +135,7 @@ modules:
         - wl-clipboard
         - xhost
         - xorg-x11-xauth
-        - yubikey-manage
+        - yubikey-manager
 
   # install cosign directly from github, use CoreOS' generator for emergency/rescue boot, bunch of workarounds
   - type: script
