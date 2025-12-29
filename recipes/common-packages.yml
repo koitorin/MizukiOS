@@ -183,6 +183,7 @@ modules:
         - avengemedia/dms-git
         - avengemedia/danklinux
         - ulysg/xwayland-satellite
+        - ublue-os/packages
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
