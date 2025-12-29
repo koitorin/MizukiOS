@@ -350,11 +350,25 @@ modules:
         - plasma-breeze
         - kf6-qqc2-desktop-style
 
-  - type: script # Codecs for video thumbnails on nautilus
-    snippets:
-      - "dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo"
-      - "dnf config-manager setopt fedora-multimedia.enabled=0"
-      - "dnf -y install --enablerepo=fedora-multimedia -x PackageKit* ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer"
+  - type: dnf # Codecs for video thumbnails on nautilus
+    repos:
+      cleanup: true
+      files: https://negativo17.org/repos/fedora-multimedia.repo
+    install:
+      packages:
+        - install-weak-deps: false
+          packages:
+            - ffmpeg
+            - libavcodec
+            - @multimedia
+            - gstreamer1-plugins-bad-free
+            - gstreamer1-plugins-bad-free-libs
+            - gstreamer1-plugins-good
+            - gstreamer1-plugins-base
+            - lame
+            - lame-libs
+            - libjxl
+            - ffmpegthumbnailer
 
   - type: script # add_wants_niri
     scripts:
