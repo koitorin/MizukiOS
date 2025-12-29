@@ -28,7 +28,7 @@ jobs:
         recipe:
           # !! Add your recipes here
           - recipe-main.yml
-          - recipe-dx.yml
+          #- recipe-dx.yml #only building main temporarily
     steps:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image

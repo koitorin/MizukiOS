@@ -3,5 +3,4 @@ modules:
     install:
       packages:
         - freerdp
-        - uxplay
         - kate
