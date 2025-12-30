@@ -4,5 +4,4 @@
 dnf config-manager addrepo --from-repofile=https://negativo17.org/repos/fedora-multimedia.repo
 dnf config-manager setopt fedora-multimedia.enabled=0
 dnf -y install --enablerepo=fedora-multimedia \
-    -x PackageKit* \
     ffmpeg libavcodec @multimedia gstreamer1-plugins-{bad-free,bad-free-libs,good,base} lame{,-libs} libjxl ffmpegthumbnailer
