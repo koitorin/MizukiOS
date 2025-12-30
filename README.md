@@ -1,8 +1,11 @@
-# MizukiOS &nbsp; [![bluebuild build badge](https://github.com/koitorin/mizukios/actions/workflows/build.yml/badge.svg)](https://github.com/koitorin/mizukios/actions/workflows/build.yml)
+# MizukiOS 🎀 &nbsp; [![bluebuild build badge](https://github.com/koitorin/mizukios/actions/workflows/build.yml/badge.svg)](https://github.com/koitorin/mizukios/actions/workflows/build.yml)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+Opionated Fedora Atomic tailored for gaming, built with Niri and CachyOS Kernel, and Steam pre-installed, with the character [Akiyama Mizuki](https://www.sekaipedia.org/wiki/Akiyama_Mizuki) as default theming, full of pink and ribbons!
 
-After setup, it is recommended you update this README to describe your custom image.
+<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-12" src="https://github.com/user-attachments/assets/b02bf5fb-4ae1-4e92-9015-93d9b3961b24" />
+<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-20" src="https://github.com/user-attachments/assets/ce54e12a-f912-473f-97ae-d7e016ed9e40" />
+<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-30" src="https://github.com/user-attachments/assets/136ebf91-443a-4ce5-93b5-ebce69fc3b45" />
+<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-17-09" src="https://github.com/user-attachments/assets/d74e251c-b51e-4ad0-86cf-660b568eb2de" />
 
 ## Installation
 
@@ -32,7 +35,7 @@ The `latest` tag will automatically point to the latest build. That build will s
 
 ## ISO
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+TBD
 
 ## Verification
 
