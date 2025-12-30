@@ -350,29 +350,10 @@ modules:
         - plasma-breeze
         - kf6-qqc2-desktop-style
 
-  - type: dnf # Codecs for video thumbnails on nautilus
-    repos:
-      cleanup: true
-      files:
-        - https://negativo17.org/repos/fedora-multimedia.repo
-    install:
-      install-weak-deps: false
-      packages:
-        - ffmpeg
-        - libavcodec
-        - @multimedia
-        - gstreamer1-plugins-bad-free
-        - gstreamer1-plugins-bad-free-libs
-        - gstreamer1-plugins-good
-        - gstreamer1-plugins-base
-        - lame
-        - lame-libs
-        - libjxl
-        - ffmpegthumbnailer
-
-  - type: script # add_wants_niri
+  - type: script # add_wants_niri and codecs for video thumbnails on nautilus
     scripts:
       - add_wants_niri.sh
+      - nautilus_thumbnails.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:

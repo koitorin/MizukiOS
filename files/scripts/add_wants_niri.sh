@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 add_wants_niri() {
     sed -i "s/\[Unit\]/\[Unit\]\nWants=$1/" "/usr/lib/systemd/user/niri.service"
 }
