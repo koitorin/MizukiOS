@@ -437,7 +437,7 @@ modules:
       - "rm -f /tmp/ltsbuild"
       - "dnf5 versionlock clear"
       - "dnf5 clean all"
-      - "cp -f /usr/share/zirconium/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
+      - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
 
   - type: systemd
     user:
