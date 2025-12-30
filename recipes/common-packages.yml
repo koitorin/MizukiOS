@@ -182,8 +182,8 @@ modules:
       - "dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri-git install --setopt=install_weak_deps=False niri"
       - "rm -rf /usr/share/doc/niri"
 
-    # install basic packages and niri, most borrowed from zirconium
-  - type: dnf
+
+  - type: dnf #install niri, dms, and related packages
     repos:
       cleanup: true
       copr:
@@ -191,15 +191,30 @@ modules:
         - avengemedia/dms-git
         - avengemedia/danklinux
         - ulysg/xwayland-satellite
-        - ublue-os/packages
-      files:
-        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       install-weak-deps: false
       packages:
         - repo: copr:copr.fedorainfracloud.org:ulysg:xwayland-satellite
           packages:
            - xwayland-satellite
+        - dms
+        - dms-cli
+        - dms-greeter
+        - dgop
+        - dsearch
+        - niri
+        - quickshell-git
+        - wl-clipboard
+
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - ublue-os/packages
+      files:
+        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    install:
+      packages:
         - alsa-firmware
         - alsa-sof-firmware
         - alsa-tools-firmware
@@ -222,6 +237,12 @@ modules:
         - firewalld
         - fuse
         - fuse-common
+        - fcitx5-configtool
+        - fcitx5-mozc
+        - fcitx5-chinese-addons
+        - fcitx5-gtk
+        - fcitx5-hangul
+        - kcm-fcitx5
         - fwupd
         - git
         - git-core
@@ -318,19 +339,7 @@ modules:
         - xdg-user-dirs
         - zram-generator-defaults
         - tailscale
-        - dms # niri starts here
-        - dms-cli
-        - dms-greeter
-        - dgop
-        - fcitx5-configtool
-        - fcitx5-mozc
-        - fcitx5-chinese-addons
-        - fcitx5-gtk
-        - fcitx5-hangul
-        - kcm-fcitx5
-        - quickshell-git
         - wget
-        - wl-clipboard
 
   # get new luks stuff from bluefin. gum is required which is installed on previous step
   - type: copy
