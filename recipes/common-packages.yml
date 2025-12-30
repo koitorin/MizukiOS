@@ -353,7 +353,7 @@ modules:
   - type: script # add_wants_niri and codecs for video thumbnails on nautilus
     scripts:
       - add_wants_niri.sh
-      - nautilus_thumbnails.sh
+#      - nautilus_thumbnails.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
@@ -374,9 +374,6 @@ modules:
 
   # install steam
   - type: dnf
-    repos:
-      cleanup: true
-      nonfree: rpmfusion
     install:
       install-weak-deps: false
       packages:
