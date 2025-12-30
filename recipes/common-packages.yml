@@ -428,6 +428,7 @@ modules:
       - "curl --retry 3 -Lo /usr/lib/extest/libextest.so https://github.com/bazzite-org/extest/releases/latest/download/libextest.so"
       - "curl --retry 3 -Lo /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
       - "chmod +x /usr/bin/winetricks"
+      - "chmod +x /usr/bin/mizukios-steam"
       - "sed -i 's@/usr/bin/steam@/usr/bin/mizukios-steam@g' /usr/share/applications/steam.desktop"
       - "fc-cache --force --really-force --system-only --verbose"
       - "rm -rf /usr/share/doc"
