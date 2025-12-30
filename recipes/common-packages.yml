@@ -445,6 +445,7 @@ modules:
         - tailscaled.service
         - uupd.timer
         - flatpak-add-flathub-repos.service
+        - greetd.service
         - input-remapper.service
         - rechunker-group-fix.service
         - brew-setup.service
