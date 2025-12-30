@@ -353,6 +353,7 @@ modules:
   - type: script # add_wants_niri and codecs for video thumbnails on nautilus
     scripts:
       - add_wants_niri.sh
+      - fix-dms-greeter.sh
 #      - nautilus_thumbnails.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
