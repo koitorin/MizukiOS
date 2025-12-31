@@ -337,7 +337,6 @@ modules:
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
         - xdg-user-dirs
-        - zram-generator-defaults
         - tailscale
         - wget
 
