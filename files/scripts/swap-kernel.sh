@@ -38,7 +38,7 @@ popd
 dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
 
 # install scx-scheds
-dnf5 -y install scx-scheds zram-generator-defaults cachyos-settings
+dnf5 -y install scx-scheds cachyos-settings
 
 dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
 dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
