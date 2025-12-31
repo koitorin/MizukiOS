@@ -38,7 +38,7 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
-          build_chunked_oci: true
+          build_chunked_oci: false # change this when we can figure out why it's not working
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
