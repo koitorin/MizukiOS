@@ -9,7 +9,7 @@ Opionated Fedora Atomic tailored for gaming, built with Niri and CachyOS Kernel,
 
 ## Installation
 
-**Note: Current :latest build is still in built from Bazzite GNOME, while (New) MizukiOS with CachyOS Kernel is still missing QoL features and more testing.**
+**Note: Current :latest build is still built from Bazzite GNOME, while (New) MizukiOS with CachyOS Kernel is still missing QoL features and needs more testing.**
 > [!WARNING]  
 > [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
 
