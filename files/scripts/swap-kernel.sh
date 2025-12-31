@@ -27,7 +27,7 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
-dnf5 -y install --allowerasing kernel-cachyos-lto kernel-cachyos-devel-matched akmods
+dnf5 -y install --allowerasing kernel-cachyos-lto akmods
 
 pushd /usr/lib/kernel/install.d
 mv -f 05-rpmostree.install.bak 05-rpmostree.install
