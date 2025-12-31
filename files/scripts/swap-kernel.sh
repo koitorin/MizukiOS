@@ -12,7 +12,7 @@ done
 dnf5 -y config-manager setopt "*fedora*".exclude="kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-devel kernel-headers"
 
 # enable cachyos kernel copr repo
-dnf5 -y copr enable bieszczaders/kernel-cachyos
+dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
 
 # let selinux use cachyos kernel
 setsebool -P domain_kernel_load_modules on
@@ -27,7 +27,7 @@ printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
 chmod +x 05-rpmostree.install 50-dracut.install
 popd
 
-dnf5 -y install --allowerasing kernel-cachyos kernel-cachyos-devel-matched akmods
+dnf5 -y install --allowerasing kernel-cachyos-lto kernel-cachyos-devel-matched akmods
 
 pushd /usr/lib/kernel/install.d
 mv -f 05-rpmostree.install.bak 05-rpmostree.install
@@ -38,7 +38,7 @@ popd
 dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
 
 # install scx-scheds
-dnf5 -y install scx-scheds
+dnf5 -y install scx-scheds swap zram-generator-defaults cachyos-settings
 
-dnf5 -y copr disable bieszczaders/kernel-cachyos
+dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
 dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
