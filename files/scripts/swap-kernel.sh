@@ -4,7 +4,9 @@
 set -oue pipefail
 
 # Remove Fedora kernel & remove leftover files
-dnf5 -y remove kernel* && rm -r -f /usr/lib/modules/*
+for pkg in kernel kernel-core kernel-modules kernel-modules-core; do
+  rpm --erase $pkg --nodeps
+done
 
 # exclude pulling kernel from fedora repos
 dnf5 -y config-manager setopt "*fedora*".exclude="kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-devel kernel-headers"
