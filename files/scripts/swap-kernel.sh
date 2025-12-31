@@ -1,44 +1,48 @@
 #!/usr/bin/env bash
 
-# Tell this script to exit if there are any errors.
-set -oue pipefail
+set -xeuo pipefail
 
-# Remove Fedora kernel & remove leftover files
+dnf remove -y NetworkManager
+
+dnf install -y \
+  systemd-networkd \
+  systemd-networkd-defaults \
+  strace \
+  socat \
+  tcpdump \
+  netcat
+
 for pkg in kernel kernel-core kernel-modules kernel-modules-core; do
   rpm --erase $pkg --nodeps
 done
 
-# exclude pulling kernel from fedora repos
-dnf5 -y config-manager setopt "*fedora*".exclude="kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra kernel-devel kernel-headers"
-
-# enable cachyos kernel copr repo
-dnf5 -y copr enable bieszczaders/kernel-cachyos-lto
-
-# let selinux use cachyos kernel
-setsebool -P domain_kernel_load_modules on
-
-# create a shims to bypass kernel install triggering dracut/rpm-ostree
-# seems to be minimal impact, but allows progress on build
 pushd /usr/lib/kernel/install.d
-mv 05-rpmostree.install 05-rpmostree.install.bak
-mv 50-dracut.install 50-dracut.install.bak
 printf '%s\n' '#!/bin/sh' 'exit 0' > 05-rpmostree.install
 printf '%s\n' '#!/bin/sh' 'exit 0' > 50-dracut.install
-chmod +x 05-rpmostree.install 50-dracut.install
+chmod +x  05-rpmostree.install 50-dracut.install
 popd
 
-dnf5 -y install --allowerasing kernel-cachyos-lto akmods
+dnf -y copr enable bieszczaders/kernel-cachyos-lto
+dnf -y copr disable bieszczaders/kernel-cachyos-lto
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-lto install \
+  kernel-cachyos-lto
 
-pushd /usr/lib/kernel/install.d
-mv -f 05-rpmostree.install.bak 05-rpmostree.install
-mv -f 50-dracut.install.bak 50-dracut.install
-popd
+dnf -y copr enable bieszczaders/kernel-cachyos-addons
+dnf -y copr disable bieszczaders/kernel-cachyos-addons
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons swap zram-generator-defaults cachyos-settings
+dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons install \
+  scx-scheds-git \
+  scx-manager
 
-# enable cachyos kernel addons copr repo
-dnf5 -y copr enable bieszczaders/kernel-cachyos-addons
+# http://github.com/tulilirockz/maranta/
+dnf install -y \
+  SDL3_image
 
-# install scx-scheds
-dnf5 -y install scx-scheds cachyos-settings
+tee /usr/lib/modules-load.d/mizukios-ntsync.conf <<'EOF'
+ntsync
+EOF
 
-dnf5 -y copr disable bieszczaders/kernel-cachyos-lto
-dnf5 -y copr disable bieszczaders/kernel-cachyos-addons
+KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/modules" -exec basename '{}' ';' | sort | tail -n 1)"
+export DRACUT_NO_XATTR=1
+dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
+chmod 0600 "/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"
