@@ -149,11 +149,6 @@ modules:
       - "mv '/usr/share/doc/just/README.中文.md' '/usr/share/doc/just/README.zh-cn.md'"
       - "ln -s '/usr/share/fonts/google-noto-sans-cjk-fonts' '/usr/share/fonts/noto-cjk'"
 
-  # swap kernel
-  - type: script
-    scripts:
-      - swap-kernel.sh
-
   # install brew, updates would be handled with uupd
   - type: copy
     from: ghcr.io/ublue-os/brew:latest
@@ -438,6 +433,11 @@ modules:
       - "dnf5 versionlock clear"
       - "dnf5 clean all"
       - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
+
+  # swap kernel
+  - type: script
+    scripts:
+      - swap-kernel.sh
 
   - type: systemd
     user:
