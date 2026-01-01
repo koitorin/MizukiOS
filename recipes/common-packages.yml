@@ -479,6 +479,4 @@ modules:
           - app.zen_browser.zen
           - io.github.kolunmi.Bazaar
 
-  - type: initramfs
-
   - type: signing
