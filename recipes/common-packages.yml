@@ -353,11 +353,9 @@ modules:
         - plasma-breeze
         - kf6-qqc2-desktop-style
 
-  - type: script # add_wants_niri and codecs for video thumbnails on nautilus
+  - type: script # add_wants_niri
     scripts:
       - add_wants_niri.sh
-      - fix-dms-greeter.sh
-#      - nautilus_thumbnails.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
@@ -440,6 +438,9 @@ modules:
       - swap-kernel.sh
 
   - type: systemd
+    system:
+      enabled:
+        - rechunker-group-fix.service
     user:
       enabled:
         - dms.service
@@ -457,7 +458,6 @@ modules:
         - flatpak-add-flathub-repos.service
         - greetd.service
         - input-remapper.service
-        - rechunker-group-fix.service
         - brew-setup.service
       disabled:
         - bootc-fetch-apply-updates.timer
@@ -470,6 +470,10 @@ modules:
         - bootc-fetch-apply-updates.service
         - akmods-keygen@akmods-keygen.service
         - akmods-keygen.target
+
+  - type: script
+    scripts:
+      - fix-dms-greeter.sh
 
   - type: default-flatpaks
     configurations:
