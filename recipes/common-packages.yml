@@ -200,6 +200,7 @@ modules:
         - niri
         - quickshell-git
         - wl-clipboard
+        - gdm #workaround until greetd doesn't destroy everything
 
   - type: dnf
     repos:
