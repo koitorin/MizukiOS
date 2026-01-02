@@ -457,7 +457,7 @@ modules:
         - tailscaled.service
         - uupd.timer
         - flatpak-add-flathub-repos.service
-        - greetd.service
+        #- greetd.service
         - input-remapper.service
         - brew-setup.service
       disabled:
