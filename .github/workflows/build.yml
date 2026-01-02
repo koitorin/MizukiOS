@@ -40,6 +40,6 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           build_chunked_oci: true
           max_layers: 86
-
-          # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
+          # https://github.com/bootc-dev/bootc/issues/1885
+          build_opts: --rechunk-clear-plan
