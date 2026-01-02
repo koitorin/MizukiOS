@@ -194,7 +194,7 @@ modules:
            - xwayland-satellite
         - dms
         - dms-cli
-        - dms-greeter
+        #- dms-greeter
         - dgop
         - dsearch
         - niri
@@ -247,8 +247,8 @@ modules:
         - gnome-disk-utility
         - gnome-keyring
         - gnome-keyring-pam
-        - greetd
-        - greetd-selinux
+        #- greetd
+        #- greetd-selinux
         - gum
         - gvfs-archive
         - gvfs-mtp
@@ -472,9 +472,9 @@ modules:
         - akmods-keygen@akmods-keygen.service
         - akmods-keygen.target
 
-  - type: script
-    scripts:
-      - fix-dms-greeter.sh
+  #- type: script
+    #scripts:
+      #- fix-dms-greeter.sh
 
   - type: default-flatpaks
     configurations:
