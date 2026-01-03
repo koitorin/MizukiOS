@@ -5,7 +5,7 @@ modules:
       ID_LIKE: fedora
       NAME: MizukiOS
       VERSION: 43 (Ribbon)
-      PRETTY_NAME: MizukiOS
+      PRETTY_NAME: MizukiOS (FROM Zirconium)
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
 
