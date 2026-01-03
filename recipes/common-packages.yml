@@ -277,6 +277,9 @@ modules:
 
   # install steam
   - type: dnf
+    repos:
+      cleanup: true
+      nonfree: rpmfusion
     install:
       install-weak-deps: false
       packages:
