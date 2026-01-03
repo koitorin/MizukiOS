@@ -71,9 +71,6 @@ modules:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       packages:
-        - brightnessctl
-        - cava
-        - ddcutil
         - fcitx5-configtool
         - fcitx5-mozc
         - fcitx5-chinese-addons
