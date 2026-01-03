@@ -9,36 +9,15 @@ modules:
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
 
-
-  # install fedora logos and dnf5-plugins that is needed for copr management and other actions, most borrowed from vedaos here and below
-  - type: dnf
-    install:
-      packages:
-        - fedora-logos
-        - dnf5-plugins
-
   # copying system files over to the system
   - type: files
     files:
       - source: system
         destination: /
 
-  # remove leftovers from fedora-bootc
-  - type: dnf
-    remove:
-      packages:
-        - console-login-helper-messages
-        - chrony
-        - sssd*
-        - qemu-user-static*
-        - toolbox
-
-  # delete chsh since we don't need it, create roothome dir, add fedora-multimedia
+  # enable fedora-multimedia
   - type: script
     snippets:
-      - "rm -f /usr/bin/chsh"
-      - "rm -f /usr/bin/lchsh"
-      - "mkdir -p /var/roothome"
       - "dnf5 config-manager addrepo --from-repofile='https://negativo17.org/repos/fedora-multimedia.repo'"
       - "dnf5 config-manager setopt fedora-multimedia.priority=90"
       - "dnf5 config-manager setopt fedora-cisco-openh264.enabled=0"
@@ -138,23 +117,6 @@ modules:
         - xorg-x11-xauth
         - yubikey-manager
 
-  # install cosign directly from github, use CoreOS' generator for emergency/rescue boot, bunch of workarounds
-  - type: script
-    scripts:
-      - install-cosign.sh
-      - fix-brew.sh # we're doing it here so it won't error out in snippets
-    snippets:
-      - "curl --retry 3 -sSLo /usr/lib/systemd/system-generators/coreos-sulogin-force-generator https://raw.githubusercontent.com/coreos/fedora-coreos-config/refs/heads/stable/overlay.d/05core/usr/lib/systemd/system-generators/coreos-sulogin-force-generator"
-      - "chmod +x /usr/lib/systemd/system-generators/coreos-sulogin-force-generator"
-      - "mv '/usr/share/doc/just/README.中文.md' '/usr/share/doc/just/README.zh-cn.md'"
-      - "ln -s '/usr/share/fonts/google-noto-sans-cjk-fonts' '/usr/share/fonts/noto-cjk'"
-
-  # install brew, updates would be handled with uupd
-  - type: copy
-    from: ghcr.io/ublue-os/brew:latest
-    src: /system_files
-    dest: /
-
   - type: dnf
     repos:
       cleanup: true
@@ -168,38 +130,6 @@ modules:
         - fish
         - hyfetch
         - starship
-
-  - type: script
-    snippets:
-      - "dnf -y copr enable yalter/niri-git"
-      - "dnf -y copr disable yalter/niri-git"
-      - "echo 'priority=1' | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalter:niri-git.repo"
-      - "dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri-git install --setopt=install_weak_deps=False niri"
-      - "rm -rf /usr/share/doc/niri"
-
-
-  - type: dnf #install niri, dms, and related packages
-    repos:
-      cleanup: true
-      copr:
-        - yalter/niri-git
-        - avengemedia/dms-git
-        - avengemedia/danklinux
-        - ulysg/xwayland-satellite
-    install:
-      install-weak-deps: false
-      packages:
-        - repo: copr:copr.fedorainfracloud.org:ulysg:xwayland-satellite
-          packages:
-           - xwayland-satellite
-        - dms
-        - dms-cli
-        - dms-greeter
-        - dgop
-        - dsearch
-        - niri
-        - quickshell-git
-        - wl-clipboard
 
   - type: dnf
     repos:
@@ -239,7 +169,6 @@ modules:
         - fcitx5-hangul
         - kcm-fcitx5
         - fwupd
-        - gdm #workaround until greetd doesn't destroy everything
         - git
         - git-core
         - glibc-all-langpacks
@@ -247,8 +176,6 @@ modules:
         - gnome-disk-utility
         - gnome-keyring
         - gnome-keyring-pam
-        #- greetd
-        #- greetd-selinux
         - gum
         - gvfs-archive
         - gvfs-mtp
@@ -277,20 +204,6 @@ modules:
         - man-pages
         - mobile-broadband-provider-info
         - mt7xxx-firmware
-        - nautilus
-        - NetworkManager
-        - NetworkManager-adsl
-        - NetworkManager-bluetooth
-        - NetworkManager-config-connectivity-fedora
-        - NetworkManager-libnm
-        - NetworkManager-openconnect
-        - NetworkManager-openvpn
-        - NetworkManager-strongswan
-        - NetworkManager-ssh
-        - NetworkManager-ssh-selinux
-        - NetworkManager-vpnc
-        - NetworkManager-wifi
-        - NetworkManager-wwan
         - nxpwireless-firmware
         - openssh-askpass
         - open-vm-tools
@@ -329,18 +242,10 @@ modules:
         - whois
         - wireguard-tools
         - wireplumber
-        - wl-clipboard
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
         - xdg-user-dirs
-        - tailscale
         - wget
-
-  # get new luks stuff from bluefin. gum is required which is installed on previous step
-  - type: copy
-    from: ghcr.io/projectbluefin/common:latest
-    src: /system_files/shared/usr/bin/luks*
-    dest: /us
 
   - type: dnf # adds qt6 things
     repos:
@@ -353,10 +258,6 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
-
-  - type: script # add_wants_niri
-    scripts:
-      - add_wants_niri.sh
 
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
@@ -411,7 +312,6 @@ modules:
   # some finishing touches
   - type: script
     snippets:
-      - "sed --sandbox -i -e '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-session/session/' /etc/pam.d/greetd"
       - "rm -rf /usr/share/doc/just"
       - "sed -i 's|uupd|& --disable-module-distrobox|' /usr/lib/systemd/system/uupd.service"
       - "sed -i '/^REDHAT_BUGZILLA_PRODUCT=/d;/^REDHAT_BUGZILLA_PRODUCT_VERSION=/d;/^REDHAT_SUPPORT_PRODUCT=/d;/^REDHAT_SUPPORT_PRODUCT_VERSION=/d;/^SUPPORT_END=/d' /usr/lib/os-release"
@@ -437,44 +337,6 @@ modules:
   - type: script
     scripts:
       - swap-kernel.sh
-
-  - type: systemd
-    system:
-      enabled:
-        - rechunker-group-fix.service
-    user:
-      enabled:
-        - dms.service
-        - cliphist.service
-        - gnome-keyring-daemon.service
-        - gnome-keyring-daemon.socket
-        - udiskie.service
-        - udiskie
-    system:
-      enabled:
-        - systemd-timesyncd.service
-        - systemd-resolved.service
-        - tailscaled.service
-        - uupd.timer
-        - flatpak-add-flathub-repos.service
-        #- greetd.service
-        - input-remapper.service
-        - brew-setup.service
-      disabled:
-        - bootc-fetch-apply-updates.timer
-        - bootc-fetch-apply-updates.service
-        - akmods-keygen@akmods-keygen.service
-        - akmods-keygen.target
-        - rpm-ostree-countme.timer
-      masked:
-        - bootc-fetch-apply-updates.timer
-        - bootc-fetch-apply-updates.service
-        - akmods-keygen@akmods-keygen.service
-        - akmods-keygen.target
-
-  #- type: script
-    #scripts:
-      #- fix-dms-greeter.sh
 
   - type: default-flatpaks
     configurations:

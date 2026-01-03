@@ -2,8 +2,8 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: mizukios
 description: Opinionated Fedora Atomic images with Niri and Steam
-base-image: quay.io/fedora/fedora-bootc
-image-version: 43
+base-image: ghcr.io/zirconium-dev/zirconium
+image-version: latest
 
 modules:
   - from-file: common-packages.yml
