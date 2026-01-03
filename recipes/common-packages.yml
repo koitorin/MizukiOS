@@ -56,7 +56,7 @@ modules:
         - ublue-os/packages
         - ublue-os/staging
     install:
-    skip-unavailable: true
+      skip-unavailable: true
       packages:
         - ublue-os-udev-rules
         - fedora-repos-archive
