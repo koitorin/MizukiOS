@@ -1,12 +1,36 @@
 modules:
-  - type: os-release
-    properties:
-      ID: mizukios
-      ID_LIKE: fedora
-      NAME: MizukiOS
-      PRETTY_NAME: MizukiOS
-      DEFAULT_HOSTNAME: mizukios
-      VERSION_CODENAME: Ribbon
+  - type: script
+    snippets:
+      - "dnf5 config-manager setopt fedora-multimedia.priority=90"
+      - "dnf5 config-manager setopt fedora-cisco-openh264.enabled=0"
+
+  # enable terra repo, install packages from fedora-multimedia, install ocl-icd
+  - type: script
+    snippets:
+      - "dnf5 -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras,-mesa}"
+      - 'dnf5 -y config-manager setopt "*terra*".priority=3 "*terra*".exclude="nerd-fonts topgrade scx-tools scx-scheds steam python3-protobuf"'
+      - 'dnf5 -y config-manager setopt "terra-mesa".enabled=true'
+
+  - type: dnf
+    install:
+      skip-unavailable: true
+      packages:
+        - fdk-aac
+        - intel-gmmlib
+        - intel-mediasdk
+        - intel-vpl-gpu-rt
+        - libfdk-aac
+        - libheif
+        - libva
+        - libva-intel-media-driver
+        - mesa-dri-drivers
+        - mesa-filesystem
+        - mesa-libEGL
+        - mesa-libGL
+        - mesa-libgbm
+        - mesa-va-drivers
+        - mesa-vulkan-drivers
+        - ocl-icd
 
   - type: dnf
     repos:
@@ -15,7 +39,9 @@ modules:
         - atim/starship
     install:
       packages:
+        - btop
         - chezmoi
+        - fastfetch
         - fish
         - hyfetch
         - starship
@@ -24,31 +50,20 @@ modules:
     repos:
       cleanup: true
       copr:
-        - yalter/niri-git
-        - avengemedia/dms-git
-        - avengemedia/danklinux
-        - ulysg/xwayland-satellite
+        - ublue-os/packages
+      files:
+        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
-      install-weak-deps: false
       packages:
-        - repo: copr:copr.fedorainfracloud.org:ulysg:xwayland-satellite
-          packages:
-           - xwayland-satellite
-        - repo: copr:copr.fedorainfracloud.org:yalter:niri-git
-          packages:
-           - niri
-        - dms
-        - dms-cli
-        - dms-greeter
-        - dgop
         - fcitx5-configtool
         - fcitx5-mozc
         - fcitx5-chinese-addons
         - fcitx5-gtk
         - fcitx5-hangul
         - kcm-fcitx5
-        - quickshell-git
-        - wl-clipboard
+        - glibc-all-langpacks
+        - jetbrains-mono-fonts-all
+        - ptyxis
 
   - type: dnf # adds qt6 things
     repos:
@@ -61,18 +76,47 @@ modules:
         - polkit-kde
         - plasma-breeze
         - kf6-qqc2-desktop-style
-        
-  - type: dnf #packages for japanese kanji rendering instead of chinese fallback
+
+  - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
       cleanup: true
     install:
       install-weak-deps: false
       packages:
-        - langpacks-ja
+        - default-fonts-core-emoji
+        - default-fonts
         - default-fonts-cjk-sans
+        - google-noto-color-emoji-fonts
+        - google-noto-emoji-fonts
         - google-noto-sans-cjk-vf-fonts
+        - glibc-all-langpacks
+        - langpacks-ja
         - langpacks-core-ja
         - langpacks-fonts-ja
+
+  # install steam
+  - type: dnf
+    repos:
+      cleanup: true
+      nonfree: rpmfusion
+    install:
+      install-weak-deps: false
+      packages:
+        - steam
+
+  # give bazzite copr repos a priority, install gamescope and scb
+  - type: script
+    snippets:
+      - "dnf5 -y config-manager setopt '*terra*'.enabled=false"
+      - "dnf5 -y copr enable bazzite-org/bazzite"
+      - "dnf5 -y copr enable bazzite-org/bazzite-multilib"
+      - "dnf5 -y config-manager setopt '*bazzite*'.priority=90"
+      - "dnf5 -y install gamescope-libs gamescope-shaders"
+      - "dnf5 -y copr disable bazzite-org/bazzite"
+      - "dnf5 -y copr disable bazzite-org/bazzite-multilib"
+      - "curl -Lo /usr/bin/scopebuddy https://raw.githubusercontent.com/HikariKnight/ScopeBuddy/refs/heads/main/bin/scopebuddy"
+      - "chmod +x /usr/bin/scopebuddy"
+      - "ln -s scopebuddy /usr/bin/scb"
 
   # copying system files over to the system
   - type: files
@@ -80,13 +124,49 @@ modules:
       - source: system
         destination: /
 
+  # some finishing touches
+  - type: script
+    snippets:
+      - "echo 'Hidden=true' >> /usr/share/applications/btop.desktop"
+      - "echo 'Hidden=true' >> /usr/share/applications/nvtop.desktop"
+      - "mkdir -p /usr/lib/extest"
+      - "curl --retry 3 -Lo /usr/lib/extest/libextest.so https://github.com/bazzite-org/extest/releases/latest/download/libextest.so"
+      - "curl --retry 3 -Lo /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
+      - "chmod +x /usr/bin/winetricks"
+      - "chmod +x /usr/bin/mizukios-steam"
+      - "sed -i 's@/usr/bin/steam@/usr/bin/mizukios-steam@g' /usr/share/applications/steam.desktop"
+      - "fc-cache --force --really-force --system-only --verbose"
+      - "rm -rf /usr/share/doc"
+      - "rm -rf /usr/src"
+      - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
+      - "rm -rf /usr/lib/systemd/user/chezmoi-*"
+      - "rm -rf /etc/profile.d/zfetch && rm -rf /etc/profile.d/zmotd"
+
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
     all-users: true
     file-conflict-policy: skip
 
-  - type: systemd
-    user:
-        enabled:
-            - dms.service
-            - cliphist.service
+  - type: default-flatpaks
+    configurations:
+      - notify: false # Send notification after install/uninstall is finished
+        scope: system
+        install:
+          - io.github.kolunmi.Bazaar
+
+  - type: os-release
+    properties:
+      ID: mizukios
+      ID_LIKE: fedora
+      NAME: MizukiOS
+      VERSION: 43 (Ribbon)
+      PRETTY_NAME: MizukiOS (FROM Zirconium)
+      DEFAULT_HOSTNAME: mizukios
+      VERSION_CODENAME: Ribbon
+
+  # swap kernel
+  - type: script
+    scripts:
+      - swap-kernel.sh
+
+  - type: signing

@@ -28,7 +28,7 @@ jobs:
         recipe:
           # !! Add your recipes here
           - recipe-main.yml
-          - recipe-dx.yml
+          #- recipe-dx.yml #only building main temporarily
     steps:
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
@@ -38,6 +38,7 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
-
-          # enabled by default, disable if your image is small and you want faster builds
+          build_chunked_oci: true
           maximize_build_space: true
+          # https://github.com/bootc-dev/bootc/issues/1885
+          build_opts: --rechunk-clear-plan
