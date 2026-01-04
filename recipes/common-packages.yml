@@ -1,14 +1,4 @@
 modules:
-  - type: os-release
-    properties:
-      ID: mizukios
-      ID_LIKE: fedora
-      NAME: MizukiOS
-      VERSION: 43 (Ribbon)
-      PRETTY_NAME: MizukiOS (FROM Zirconium)
-      DEFAULT_HOSTNAME: mizukios
-      VERSION_CODENAME: Ribbon
-
   - type: script
     snippets:
       - "dnf5 config-manager setopt fedora-multimedia.priority=90"
@@ -128,13 +118,6 @@ modules:
       - "chmod +x /usr/bin/scopebuddy"
       - "ln -s scopebuddy /usr/bin/scb"
 
-  # add flathub, a way better flatpak repo, and remove fedora flatpaks
-  - type: script
-    snippets:
-      - "mkdir -p /etc/flatpak/remotes.d/"
-      - "curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo"
-      - "rm -f /usr/lib/systemd/system/flatpak-add-fedora-repos.service"
-
   # copying system files over to the system
   - type: files
     files:
@@ -172,7 +155,18 @@ modules:
       - notify: false # Send notification after install/uninstall is finished
         scope: system
         install:
-          - app.zen_browser.zen
           - io.github.kolunmi.Bazaar
+
+  - type: os-release
+    properties:
+      ID: mizukios
+      ID_LIKE: fedora
+      NAME: MizukiOS
+      VERSION: 43 (Ribbon)
+      PRETTY_NAME: MizukiOS (FROM Zirconium)
+      DEFAULT_HOSTNAME: mizukios
+      VERSION_CODENAME: Ribbon
+
+  - type: initramfs
 
   - type: signing
