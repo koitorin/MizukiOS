@@ -48,7 +48,7 @@ cosign verify --key cosign.pub ghcr.io/koitorin/mizukios
 
 ## Shouts
 
-- [Zirconium](https://github.com/zirconium-dev/zirconium) - Big inspiration for MizukiOS, and the first bootc image to explore Niri! Huge credits for the girls!
+- [Zirconium](https://github.com/zirconium-dev/zirconium) - Big inspiration for MizukiOS, the first bootc image to explore Niri, and the base for this project! Huge credits for the girls!
 - [VedaOS](https://github.com/Lumaeris/vedaos) - Similar image to MizukiOS but with GNOME! Huge credits to the work Luma put here, and thanks for letting borrow some code! 
 - [XeniaOS](https://github.com/XeniaMeraki/XeniaOS) - Another Niri bootc image and CachyOS Kernel like MizukiOS but from Arch bootc! Experimental but this is so cool!
 - [Piperita](https://github.com/tulilirockz/piperita) - A MizukiOS sister of some kind? It's Zirconium with CachyOS Kernel, nice!!
