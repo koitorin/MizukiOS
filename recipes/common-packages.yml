@@ -140,11 +140,6 @@ modules:
       - "rm -rf /usr/src"
       - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
 
-  # swap kernel
-  - type: script
-    scripts:
-      - swap-kernel.sh
-
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
     all-users: true
@@ -167,6 +162,9 @@ modules:
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
 
-  - type: initramfs
+  # swap kernel
+  - type: script
+    scripts:
+      - swap-kernel.sh
 
   - type: signing
