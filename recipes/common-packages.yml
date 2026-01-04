@@ -139,6 +139,7 @@ modules:
       - "rm -rf /usr/share/doc"
       - "rm -rf /usr/src"
       - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
+      - "rm -rf /usr/lib/systemd/user/chezmoi-*"
 
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
