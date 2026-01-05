@@ -4,34 +4,18 @@ Opionated Fedora Atomic based on [Zirconium](https://github.com/zirconium-dev/zi
 
 <img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-12" src="https://github.com/user-attachments/assets/b02bf5fb-4ae1-4e92-9015-93d9b3961b24" />
 <img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-20" src="https://github.com/user-attachments/assets/ce54e12a-f912-473f-97ae-d7e016ed9e40" />
-<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-30" src="https://github.com/user-attachments/assets/136ebf91-443a-4ce5-93b5-ebce69fc3b45" />
-<img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-17-09" src="https://github.com/user-attachments/assets/d74e251c-b51e-4ad0-86cf-660b568eb2de" />
 
 ## Installation
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+> Currently only AMD/Intel GPUs and AMD64 CPUs are supported.
 
-To rebase an existing atomic Fedora installation to the latest build:
+- Install Zirconium from their ISO here: https://isos.zirconium.gay/zirconium-isos/zirconium-amd64.iso
+You can also use other Fedora Atomic systems, like Bluefin or Bazzite.
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
+- After the installion is complete, use this command to rebase to MizukiOS
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/koitorin/mizukios:latest
+  sudo bootc switch ghcr.io/zirconium-dev/zirconium:latest
   ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/koitorin/mizukios:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
-
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
 
 ## ISO
 
