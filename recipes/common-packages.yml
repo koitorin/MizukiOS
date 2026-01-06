@@ -140,7 +140,7 @@ modules:
       - "rm -rf /usr/src"
       - "cp -f /usr/share/mizukios/pixmaps/watermark.png /usr/share/plymouth/themes/spinner/watermark.png"
       - "rm -rf /usr/lib/systemd/user/chezmoi-*"
-      - "rm -rf /etc/profile.d/zfetch && rm -rf /etc/profile.d/zmotd"
+      - "rm -rf /etc/profile.d/zfetch.sh && rm -rf /etc/profile.d/zmotd.sh"
 
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
