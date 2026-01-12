@@ -1,6 +1,6 @@
 # MizukiOS 🎀 &nbsp; [![bluebuild build badge](https://github.com/koitorin/mizukios/actions/workflows/build.yml/badge.svg)](https://github.com/koitorin/mizukios/actions/workflows/build.yml)
 
-Opionated Fedora Atomic based on [Zirconium](https://github.com/zirconium-dev/zirconium) tailored for gaming, built with Niri and CachyOS Kernel, and Steam pre-installed, with the character [Akiyama Mizuki](https://www.sekaipedia.org/wiki/Akiyama_Mizuki) as default theming, full of pink and ribbons!
+Opinionated Fedora Atomic based on [Zirconium](https://github.com/zirconium-dev/zirconium) tailored for gaming, built with Niri and CachyOS Kernel, and Steam pre-installed, with the character [Akiyama Mizuki](https://www.sekaipedia.org/wiki/Akiyama_Mizuki) as default theming, full of pink and ribbons!
 
 <img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-12" src="https://github.com/user-attachments/assets/b02bf5fb-4ae1-4e92-9015-93d9b3961b24" />
 <img width="1920" height="1080" alt="Screenshot_from_2025-12-30_19-07-20" src="https://github.com/user-attachments/assets/ce54e12a-f912-473f-97ae-d7e016ed9e40" />
