@@ -47,12 +47,6 @@ modules:
         - starship
 
   - type: dnf
-    repos:
-      cleanup: true
-      copr:
-        - ublue-os/packages
-      files:
-        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
     install:
       packages:
         - fcitx5-configtool
@@ -64,6 +58,7 @@ modules:
         - glibc-all-langpacks
         - jetbrains-mono-fonts-all
         - ptyxis
+        - firewall-config
 
   - type: dnf # adds qt6 things
     repos:
