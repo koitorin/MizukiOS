@@ -94,7 +94,7 @@ modules:
         - langpacks-core-ja
         - langpacks-fonts-ja
 
-  # install steam
+  # install steam and sunshine
   - type: dnf
     repos:
       cleanup: true
@@ -103,6 +103,7 @@ modules:
       install-weak-deps: false
       packages:
         - steam
+        - Sunshine
 
   # give bazzite copr repos a priority, install gamescope and scb
   - type: script
