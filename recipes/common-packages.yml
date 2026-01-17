@@ -100,7 +100,7 @@ modules:
       cleanup: true
       nonfree: rpmfusion
       copr:
-        - lizardbyte/stable
+        - lizardbyte/beta
     install:
       install-weak-deps: false
       packages:
