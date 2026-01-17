@@ -99,6 +99,8 @@ modules:
     repos:
       cleanup: true
       nonfree: rpmfusion
+      copr:
+        - lizardbyte/stable
     install:
       install-weak-deps: false
       packages:
