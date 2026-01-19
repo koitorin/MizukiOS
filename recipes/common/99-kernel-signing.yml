@@ -1,0 +1,7 @@
+modules:
+  # swap kernel
+  - type: script
+    scripts:
+      - swap-kernel.sh
+
+  - type: signing

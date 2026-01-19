@@ -6,4 +6,6 @@ base-image: ghcr.io/zirconium-dev/zirconium
 image-version: latest
 
 modules:
-  - from-file: common-packages.yml
+  - from-file: common/00-common.yml
+  - from-file: common/10-niri.yml
+  - from-file: common/99-kernel-signing.yml

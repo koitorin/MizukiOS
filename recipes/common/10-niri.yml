@@ -1,0 +1,27 @@
+modules:
+  - type: dnf # adds qt6 things
+    repos:
+      cleanup: true
+    install:
+      install-weak-deps: false
+      packages:
+        - kf6-kirigami
+        - qt6ct
+        - polkit-kde
+        - plasma-breeze
+        - kf6-qqc2-desktop-style
+
+  - type: chezmoi
+    repository: "https://github.com/koitorin/MizukiOS-Ribbons"
+    all-users: true
+    file-conflict-policy: skip
+
+  - type: os-release
+    properties:
+      ID: mizukios
+      ID_LIKE: fedora
+      NAME: MizukiOS
+      VERSION: 43 (Ribbon)
+      PRETTY_NAME: MizukiOS (FROM Zirconium)
+      DEFAULT_HOSTNAME: mizukios
+      VERSION_CODENAME: Ribbon

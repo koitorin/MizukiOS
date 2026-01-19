@@ -60,18 +60,6 @@ modules:
         - ptyxis
         - firewall-config
 
-  - type: dnf # adds qt6 things
-    repos:
-      cleanup: true
-    install:
-      install-weak-deps: false
-      packages:
-        - kf6-kirigami
-        - qt6ct
-        - polkit-kde
-        - plasma-breeze
-        - kf6-qqc2-desktop-style
-
   - type: dnf #packages for japanese kanji rendering instead of chinese fallback and also adding these cool things
     repos:
       cleanup: true
@@ -151,31 +139,9 @@ modules:
       - "rm -rf /usr/lib/systemd/user/chezmoi-*"
       - "rm -rf /etc/profile.d/zfetch.sh && rm -rf /etc/profile.d/zmotd.sh"
 
-  - type: chezmoi
-    repository: "https://github.com/koitorin/MizukiOS-Ribbons"
-    all-users: true
-    file-conflict-policy: skip
-
   - type: default-flatpaks
     configurations:
       - notify: false # Send notification after install/uninstall is finished
         scope: system
         install:
           - io.github.kolunmi.Bazaar
-
-  - type: os-release
-    properties:
-      ID: mizukios
-      ID_LIKE: fedora
-      NAME: MizukiOS
-      VERSION: 43 (Ribbon)
-      PRETTY_NAME: MizukiOS (FROM Zirconium)
-      DEFAULT_HOSTNAME: mizukios
-      VERSION_CODENAME: Ribbon
-
-  # swap kernel
-  - type: script
-    scripts:
-      - swap-kernel.sh
-
-  - type: signing

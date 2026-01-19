@@ -27,7 +27,7 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - recipe-main.yml
+          - recipe-niri.yml
           #- recipe-dx.yml #only building main temporarily
     steps:
       # the build is fully handled by the reusable github action
