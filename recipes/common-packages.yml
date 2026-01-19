@@ -89,6 +89,17 @@ modules:
         - langpacks-core-ja
         - langpacks-fonts-ja
 
+  # install cdemu
+  - type: dnf
+    repos:
+      copr:
+        - rok/cdemu
+    install:
+      packages:
+        - cdemu-daemon
+        - cdemu-client
+        - gcdemu
+
   # install steam and sunshine
   - type: dnf
     repos:
