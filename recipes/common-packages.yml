@@ -112,7 +112,13 @@ modules:
       packages:
         - steam
         - Sunshine
-
+        
+  # install waydroid
+  - type: dnf
+    install:
+      packages:
+        - waydroid
+        
   # give bazzite copr repos a priority, install gamescope and scb
   - type: script
     snippets:
