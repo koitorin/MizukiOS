@@ -15,6 +15,7 @@ modules:
   - type: script
     scripts:
       - swap-mesa.sh
+      - initramfs.sh
 
   - type: dnf
     repos:
