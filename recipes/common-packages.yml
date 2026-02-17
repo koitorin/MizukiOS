@@ -15,7 +15,6 @@ modules:
   - type: script
     scripts:
       - swap-mesa.sh
-      - initramfs.sh
 
   - type: dnf
     repos:
@@ -140,5 +139,6 @@ modules:
   - type: script
     scripts:
       - swap-kernel.sh
+      - initramfs.sh
 
   - type: signing
