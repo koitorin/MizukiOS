@@ -22,15 +22,6 @@ dnf -y copr enable bieszczaders/kernel-cachyos-addons
 dnf -y copr disable bieszczaders/kernel-cachyos-addons
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:bieszczaders:kernel-cachyos-addons swap zram-generator-defaults cachyos-settings
 
-# http://github.com/tulilirockz/maranta/
-dnf install -y \
-  SDL3_image
-
 tee /usr/lib/modules-load.d/mizukios-ntsync.conf <<'EOF'
 ntsync
 EOF
-
-KERNEL_VERSION="$(ls /usr/lib/modules | head -n1)"
-export DRACUT_NO_XATTR=1
-dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
-chmod 0600 "/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"

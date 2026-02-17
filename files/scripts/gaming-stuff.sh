@@ -27,6 +27,10 @@ dnf -y --enablerepo=terra --enablerepo=terra-mesa install \
   -x falcond \
   steam
 
+# http://github.com/tulilirockz/maranta/
+dnf install -y \
+  SDL3_image
+
 mkdir -p /usr/share/sdl/
 curl "https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/refs/heads/master/gamecontrollerdb.txt" -Lo /usr/share/sdl/gamecontrollerdb.txt
 
