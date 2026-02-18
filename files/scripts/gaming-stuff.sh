@@ -10,10 +10,6 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:lizardbyte:beta install \
 dnf -y --enablerepo=terra --enablerepo=terra-extras install \
   terra-gamescope
 
-dnf -y copr enable faugus/faugus-launcher
-dnf -y --enablerepo copr:copr.fedorainfracloud.org:faugus:faugus-launcher install \
-  faugus-launcher
-
 dnf -y --enablerepo=terra install \
   inputplumber \
   opengamepadui \
