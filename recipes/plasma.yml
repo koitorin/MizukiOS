@@ -10,3 +10,7 @@ modules:
   - type: script
     snippets:
       - "dnf5 versionlock clear"
+      - "dnf5 swap --repo=updates -y pipewire pipewire"
+      - "dnf5 swap --repo=updates -y pipewire-libs pipewire-libs"
+      - "dnf5 swap --repo=fedora -y libfdk-aac fdk-aac-free"
+
