@@ -6,3 +6,7 @@ modules:
     install:
       packages:
         - klassy
+
+  - type: script
+    snippets:
+      - "dnf5 versionlock"
