@@ -12,9 +12,9 @@ modules:
       - 'dnf config-manager setopt terra-extras.enabled=0'
       - 'dnf config-manager setopt terra-mesa.enabled=0'
 
-  - type: script
-    scripts:
-      - swap-mesa.sh
+#  - type: script
+#    scripts:
+#      - swap-mesa.sh
 
   - type: dnf
     repos:
@@ -133,7 +133,7 @@ modules:
   # swap kernel
   - type: script
     scripts:
-      - swap-kernel.sh
+      #- swap-kernel.sh
       - initramfs.sh
 
   - type: signing
