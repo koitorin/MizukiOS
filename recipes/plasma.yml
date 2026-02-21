@@ -9,4 +9,4 @@ modules:
 
   - type: script
     snippets:
-      - "dnf5 versionlock"
+      - "dnf5 versionlock clear"
