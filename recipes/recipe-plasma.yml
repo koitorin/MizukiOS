@@ -6,5 +6,5 @@ base-image: ghcr.io/ublue-os/aurora
 image-version: stable-daily
 
 modules:
-  - from-file: common-packages.yml
   - from-file: plasma.yml
+  - from-file: common-packages.yml
