@@ -1,8 +1,8 @@
 modules:
   - type: script
     snippets:
-      - "dnf5 config-manager setopt fedora-multimedia.priority=90"
       - "dnf5 config-manager setopt fedora-cisco-openh264.enabled=0"
+      - "dnf config-manager setopt fedora-multimedia.enabled=0"
 
   # enable terra repo, install packages from fedora-multimedia, install ocl-icd
   - type: script

@@ -2,4 +2,5 @@
 
 set -xeuo pipefail
 
-dnf swap --repo=terra-mesa -y mesa-filesystem mesa-filesystem
+dnf -y remove mesa-filesystem
+dnf -y --enablerepo=terra --enablerepo=terra-mesa install mesa-filesystem
