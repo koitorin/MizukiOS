@@ -32,5 +32,5 @@ curl "https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/refs/heads/m
 
 dnf install -y mangohud vulkan-tools waydroid
 
-dnf info mesa-filesystem | grep -F -e "Terra"
-rpm -qa | grep -v -E "^gamescope" &> /dev/null
+#dnf info mesa-filesystem | grep -F -e "Terra"
+#rpm -qa | grep -v -E "^gamescope" &> /dev/null

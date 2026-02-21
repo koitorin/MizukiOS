@@ -7,3 +7,4 @@ image-version: stable-daily
 
 modules:
   - from-file: common-packages.yml
+  - from-files: plasma.yml

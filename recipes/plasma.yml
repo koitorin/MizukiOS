@@ -1,0 +1,8 @@
+modules:
+  - type: dnf
+    repos:
+      files:
+        - https://download.opensuse.org/repositories/home:paulmcauley/Fedora_43/home:paulmcauley.repo
+    install:
+      packages:
+        - klassy
