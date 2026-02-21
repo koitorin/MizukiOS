@@ -3,3 +3,7 @@ modules:
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
     all-users: true
     file-conflict-policy: skip
+
+  - type: script
+    snippets:
+      - "dnf versionlock clear"
