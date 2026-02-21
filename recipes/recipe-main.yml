@@ -7,3 +7,4 @@ image-version: latest
 
 modules:
   - from-file: common-packages.yml
+  - from-file: niri.yml

@@ -113,11 +113,6 @@ modules:
       - "rm -rf /usr/lib/systemd/user/chezmoi-*"
       - "rm -rf /etc/profile.d/zfetch.sh && rm -rf /etc/profile.d/zmotd.sh"
 
-  - type: chezmoi
-    repository: "https://github.com/koitorin/MizukiOS-Ribbons"
-    all-users: true
-    file-conflict-policy: skip
-
   - type: default-flatpaks
     configurations:
       - notify: false # Send notification after install/uninstall is finished
@@ -131,7 +126,7 @@ modules:
       ID_LIKE: fedora
       NAME: MizukiOS
       VERSION: 43 (Ribbon)
-      PRETTY_NAME: MizukiOS (FROM Zirconium)
+      PRETTY_NAME: MizukiOS
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
 
