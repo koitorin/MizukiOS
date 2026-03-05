@@ -3,7 +3,7 @@ modules:
     group-install:
       with-optional: false
       packages:
-        - @workstation-product-environment
+        - workstation-product-environment
     remove:
       packages:
         - fedora-bookmarks
