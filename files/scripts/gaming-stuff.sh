@@ -6,9 +6,9 @@ dnf copr enable -y lizardbyte/beta
 dnf copr disable -y lizardbyte/beta
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:lizardbyte:beta install \
   Sunshine
-
-dnf -y --enablerepo=terra --enablerepo=terra-extras install \
-  terra-gamescope
+#uncomment when gamescope is fixed on terra
+#dnf -y --enablerepo=terra --enablerepo=terra-extras install \
+#  terra-gamescope
 
 dnf -y --enablerepo=terra install \
   inputplumber \
