@@ -1,6 +1,7 @@
 modules:
   - type: dnf
-    install:
+    group-install:
+      with-optional: false
       packages:
         - @workstation-product-environment
     remove:
