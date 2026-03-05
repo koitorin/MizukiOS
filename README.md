@@ -14,7 +14,7 @@ You can also use other Fedora Atomic systems, like Bluefin or Bazzite.
 
 - After the installion is complete, use this command to rebase to MizukiOS
   ```
-  sudo bootc switch ghcr.io/zirconium-dev/zirconium:latest
+  sudo bootc switch ghcr.io/koitorin/mizukios:latest
   ```
 
 ## ISO
