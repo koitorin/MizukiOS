@@ -1,6 +1,0 @@
-modules:
-  - type: dnf
-    install:
-      packages:
-        - freerdp
-        - kate
