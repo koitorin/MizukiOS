@@ -1,10 +1,4 @@
-modules:
-  - type: script
-    snippets:
-      - "dnf5 config-manager setopt fedora-cisco-openh264.enabled=0"
-      - "dnf config-manager setopt fedora-multimedia.enabled=0"
-
-  # enable terra repo, install packages from fedora-multimedia, install ocl-icd
+# enable terra repo, install packages from fedora-multimedia, install ocl-icd
 #  - type: script
 #    snippets:
 #      - "yes | dnf -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras,-mesa} || :"
