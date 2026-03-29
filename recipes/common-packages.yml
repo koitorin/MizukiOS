@@ -1,15 +1,4 @@
-# enable terra repo, install packages from fedora-multimedia, install ocl-icd
-#  - type: script
-#    snippets:
-#      - "yes | dnf -y install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release{,-extras,-mesa} || :"
-#      - 'dnf config-manager setopt terra.enabled=0'
-#      - 'dnf config-manager setopt terra-extras.enabled=0'
-#      - 'dnf config-manager setopt terra-mesa.enabled=0'
-
-#  - type: script
-#    scripts:
-#      - swap-mesa.sh
-
+modules:
   - type: dnf
     repos:
       cleanup: true
