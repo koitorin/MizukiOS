@@ -3,7 +3,7 @@
 name: mizukios
 description: Opinionated Fedora Atomic images with Niri and Steam
 base-image: ghcr.io/zirconium-dev/zirconium
-image-version: latest-amd64
+image-version: latest
 
 modules:
   - from-file: common-packages.yml
