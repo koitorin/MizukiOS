@@ -18,7 +18,7 @@ modules:
   - type: dnf
     repos: terra
     install:
-      - repo: copr:copr.fedorainfracloud.org:custom-user:custom-repo
+      - repo: terra
         packages:
           - noctalia-shell            
 
