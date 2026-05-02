@@ -1,4 +1,20 @@
 modules:
+  - type: dnf
+    repos:
+      cleanup: true
+      copr:
+        - atim/starship
+    install:
+      packages:
+        - btop
+        - chezmoi
+        - fastfetch
+        - fish
+        - hyfetch
+        - noctalia-shell
+        - nvtop
+        - starship
+
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
     all-users: true
