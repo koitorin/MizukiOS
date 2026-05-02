@@ -11,16 +11,22 @@ modules:
         - fastfetch
         - fish
         - hyfetch
-        - noctalia-shell
         - nvtop
         - starship
-        
+
+  - type: script
+    snippets:
+      - "dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
+      - "echo 'priority=1' | sudo tee -a /etc/yum.repos.d/terra.repo"
+      
   - type: dnf
-    repos: terra
     install:
-      - repo: terra
-        packages:
-          - noctalia-shell            
+      packages:
+        - noctalia-shell   
+        
+  - type: script
+    snippets:
+      - "echo 'priority=0' | sudo tee -a /etc/yum.repos.d/terra.repo"
 
   - type: chezmoi
     repository: "https://github.com/koitorin/MizukiOS-Ribbons"
