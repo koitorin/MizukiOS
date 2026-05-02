@@ -97,7 +97,7 @@ modules:
       ID: mizukios
       ID_LIKE: fedora
       NAME: MizukiOS
-      VERSION: 44 (Ribbon)
+      VERSION: 44 (Pink Ribbon)
       PRETTY_NAME: MizukiOS
       DEFAULT_HOSTNAME: mizukios
       VERSION_CODENAME: Ribbon
