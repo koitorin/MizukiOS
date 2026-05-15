@@ -1,22 +1,7 @@
 modules:
-  - type: dnf
-    repos:
-      cleanup: true
-      copr:
-        - atim/starship
-    install:
-      packages:
-        - btop
-        - chezmoi
-        - fastfetch
-        - fish
-        - hyfetch
-        - nvtop
-        - starship
-
   - type: script
     snippets:
-      - "dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
+      #- "dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
       - "echo 'priority=1' | sudo tee -a /etc/yum.repos.d/terra.repo"
       
   - type: dnf
