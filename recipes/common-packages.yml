@@ -6,12 +6,10 @@ modules:
         - atim/starship
     install:
       packages:
-        - btop
         - chezmoi
         - fastfetch
         - fish
         - hyfetch
-        - nvtop
         - starship
 
   - type: dnf
@@ -70,8 +68,6 @@ modules:
   # some finishing touches
   - type: script
     snippets:
-      - "echo 'Hidden=true' >> /usr/share/applications/btop.desktop"
-      - "echo 'Hidden=true' >> /usr/share/applications/nvtop.desktop"
 #      - "mkdir -p /usr/lib/extest"
 #      - "curl --retry 3 -Lo /usr/lib/extest/libextest.so https://github.com/bazzite-org/extest/releases/latest/download/libextest.so"
 #      - "curl --retry 3 -Lo /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
